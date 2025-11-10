@@ -1,14 +1,21 @@
-[gd_scene load_steps=6 format=3 uid="uid://dr28cpmwuxoix"]
+[gd_scene load_steps=9 format=3 uid="uid://dr28cpmwuxoix"]
 
 [ext_resource type="Script" uid="uid://c80hc3rrfvo3q" path="res://scripts/paddle.gd" id="1_h2yge"]
 [ext_resource type="Texture2D" uid="uid://csndtdk4pfxod" path="res://sprites/paddle.png" id="1_ig7tw"]
 [ext_resource type="Texture2D" uid="uid://biuwmghrifu4t" path="res://sprites/ball.png" id="2_0xm2m"]
+[ext_resource type="Script" uid="uid://dgudy5xfggr8p" path="res://scripts/ball.gd" id="3_1bvp3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
 size = Vector2(200, 20)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0xm2m"]
 radius = 16.0312
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_1bvp3"]
+b = Vector2(0, 480)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_lquwl"]
+b = Vector2(640, 0)
 
 [node name="Node2D" type="Node2D"]
 
@@ -23,12 +30,29 @@ texture = ExtResource("1_ig7tw")
 [node name="hitbox" type="CollisionShape2D" parent="Paddle"]
 shape = SubResource("RectangleShape2D_h2yge")
 
-[node name="Ball" type="StaticBody2D" parent="."]
-position = Vector2(320, 430)
+[node name="Camera" type="Camera2D" parent="."]
+offset = Vector2(320, 240)
+
+[node name="Ball" type="CharacterBody2D" parent="."]
+script = ExtResource("3_1bvp3")
 
 [node name="sprite" type="Sprite2D" parent="Ball"]
 texture_filter = 1
+position = Vector2(320, 430)
 texture = ExtResource("2_0xm2m")
 
 [node name="hitbox" type="CollisionShape2D" parent="Ball"]
+position = Vector2(320, 430)
 shape = SubResource("CircleShape2D_0xm2m")
+
+[node name="Wall" type="StaticBody2D" parent="."]
+
+[node name="leftwall" type="CollisionShape2D" parent="Wall"]
+shape = SubResource("SegmentShape2D_1bvp3")
+
+[node name="topwall" type="CollisionShape2D" parent="Wall"]
+shape = SubResource("SegmentShape2D_lquwl")
+
+[node name="rightwall" type="CollisionShape2D" parent="Wall"]
+position = Vector2(640, 0)
+shape = SubResource("SegmentShape2D_1bvp3")
