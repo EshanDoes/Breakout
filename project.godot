@@ -37,6 +37,12 @@ click={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="bouncable"
+2d_physics/layer_2="bricks"
+2d_physics/layer_3="ball"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

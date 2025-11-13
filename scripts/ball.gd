@@ -19,7 +19,12 @@ func _physics_process(delta):
 	
 	if collider:
 		# Change direction based on collision
-		print(collider.get_collider().name)
+		print(initialVelocity.bounce(collider.get_normal()))
 		initialVelocity = initialVelocity.bounce(collider.get_normal())
 		print(initialVelocity)
+		
+		print(collider.get_collider().collision_layer)
+		if collider.get_collider().collision_layer == 2:
+			collider.get_collider().queue_free()
+		
 		await get_tree().create_timer(0.01).timeout
