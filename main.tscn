@@ -1,10 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://dr28cpmwuxoix"]
+[gd_scene load_steps=11 format=3 uid="uid://dr28cpmwuxoix"]
 
 [ext_resource type="Script" uid="uid://c80hc3rrfvo3q" path="res://scripts/paddle.gd" id="1_h2yge"]
 [ext_resource type="Texture2D" uid="uid://csndtdk4pfxod" path="res://sprites/paddle.png" id="1_ig7tw"]
 [ext_resource type="Texture2D" uid="uid://biuwmghrifu4t" path="res://sprites/ball.png" id="2_0xm2m"]
 [ext_resource type="Script" uid="uid://dgudy5xfggr8p" path="res://scripts/ball.gd" id="3_1bvp3"]
-[ext_resource type="Script" uid="uid://darib77ovdxxu" path="res://scripts/brick.gd" id="5_7mycd"]
 [ext_resource type="Texture2D" uid="uid://baga1dsu4gmff" path="res://sprites/bricks.png" id="5_lquwl"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1bvp3"]
@@ -42,7 +41,7 @@ offset = Vector2(320, 240)
 
 [node name="Ball" type="CharacterBody2D" parent="."]
 collision_layer = 4
-collision_mask = 3
+collision_mask = 11
 script = ExtResource("3_1bvp3")
 
 [node name="sprite" type="Sprite2D" parent="Ball"]
@@ -67,15 +66,16 @@ position = Vector2(640, 0)
 shape = SubResource("SegmentShape2D_1bvp3")
 
 [node name="Bricks" type="Node2D" parent="."]
+position = Vector2(0, 20)
 
 [node name="Top Row" type="Node2D" parent="Bricks"]
+modulate = Color(0, 1, 1, 1)
 position = Vector2(320, 50)
 
 [node name="Brick Left" type="StaticBody2D" parent="Bricks/Top Row"]
 position = Vector2(-220, 0)
 collision_layer = 2
-collision_mask = 3
-script = ExtResource("5_7mycd")
+collision_mask = 4
 
 [node name="sprite" type="Sprite2D" parent="Bricks/Top Row/Brick Left"]
 texture = ExtResource("5_lquwl")
@@ -86,8 +86,7 @@ shape = SubResource("RectangleShape2D_7mycd")
 [node name="Brick Mid Left" type="StaticBody2D" parent="Bricks/Top Row"]
 position = Vector2(-110, 0)
 collision_layer = 2
-collision_mask = 3
-script = ExtResource("5_7mycd")
+collision_mask = 4
 
 [node name="sprite" type="Sprite2D" parent="Bricks/Top Row/Brick Mid Left"]
 texture = ExtResource("5_lquwl")
@@ -97,8 +96,7 @@ shape = SubResource("RectangleShape2D_7mycd")
 
 [node name="Brick Middle" type="StaticBody2D" parent="Bricks/Top Row"]
 collision_layer = 2
-collision_mask = 3
-script = ExtResource("5_7mycd")
+collision_mask = 4
 
 [node name="sprite" type="Sprite2D" parent="Bricks/Top Row/Brick Middle"]
 texture = ExtResource("5_lquwl")
@@ -109,8 +107,7 @@ shape = SubResource("RectangleShape2D_7mycd")
 [node name="Brick Mid Right" type="StaticBody2D" parent="Bricks/Top Row"]
 position = Vector2(110, 0)
 collision_layer = 2
-collision_mask = 3
-script = ExtResource("5_7mycd")
+collision_mask = 4
 
 [node name="sprite" type="Sprite2D" parent="Bricks/Top Row/Brick Mid Right"]
 texture = ExtResource("5_lquwl")
@@ -121,8 +118,7 @@ shape = SubResource("RectangleShape2D_7mycd")
 [node name="Brick Right" type="StaticBody2D" parent="Bricks/Top Row"]
 position = Vector2(220, 0)
 collision_layer = 2
-collision_mask = 3
-script = ExtResource("5_7mycd")
+collision_mask = 4
 
 [node name="sprite" type="Sprite2D" parent="Bricks/Top Row/Brick Right"]
 texture = ExtResource("5_lquwl")
@@ -131,13 +127,13 @@ texture = ExtResource("5_lquwl")
 shape = SubResource("RectangleShape2D_7mycd")
 
 [node name="Mid Top Row" type="Node2D" parent="Bricks"]
+modulate = Color(0, 1, 0, 1)
 position = Vector2(320, 100)
 
 [node name="Brick Left" type="StaticBody2D" parent="Bricks/Mid Top Row"]
 position = Vector2(-220, 0)
 collision_layer = 2
-collision_mask = 3
-script = ExtResource("5_7mycd")
+collision_mask = 4
 
 [node name="sprite" type="Sprite2D" parent="Bricks/Mid Top Row/Brick Left"]
 texture = ExtResource("5_lquwl")
@@ -148,8 +144,7 @@ shape = SubResource("RectangleShape2D_7mycd")
 [node name="Brick Mid Left" type="StaticBody2D" parent="Bricks/Mid Top Row"]
 position = Vector2(-110, 0)
 collision_layer = 2
-collision_mask = 3
-script = ExtResource("5_7mycd")
+collision_mask = 4
 
 [node name="sprite" type="Sprite2D" parent="Bricks/Mid Top Row/Brick Mid Left"]
 texture = ExtResource("5_lquwl")
@@ -159,8 +154,7 @@ shape = SubResource("RectangleShape2D_7mycd")
 
 [node name="Brick Middle" type="StaticBody2D" parent="Bricks/Mid Top Row"]
 collision_layer = 2
-collision_mask = 3
-script = ExtResource("5_7mycd")
+collision_mask = 4
 
 [node name="sprite" type="Sprite2D" parent="Bricks/Mid Top Row/Brick Middle"]
 texture = ExtResource("5_lquwl")
@@ -171,8 +165,7 @@ shape = SubResource("RectangleShape2D_7mycd")
 [node name="Brick Mid Right" type="StaticBody2D" parent="Bricks/Mid Top Row"]
 position = Vector2(110, 0)
 collision_layer = 2
-collision_mask = 3
-script = ExtResource("5_7mycd")
+collision_mask = 4
 
 [node name="sprite" type="Sprite2D" parent="Bricks/Mid Top Row/Brick Mid Right"]
 texture = ExtResource("5_lquwl")
@@ -183,8 +176,7 @@ shape = SubResource("RectangleShape2D_7mycd")
 [node name="Brick Right" type="StaticBody2D" parent="Bricks/Mid Top Row"]
 position = Vector2(220, 0)
 collision_layer = 2
-collision_mask = 3
-script = ExtResource("5_7mycd")
+collision_mask = 4
 
 [node name="sprite" type="Sprite2D" parent="Bricks/Mid Top Row/Brick Right"]
 texture = ExtResource("5_lquwl")
@@ -193,13 +185,13 @@ texture = ExtResource("5_lquwl")
 shape = SubResource("RectangleShape2D_7mycd")
 
 [node name="Mid Bottom Row" type="Node2D" parent="Bricks"]
+modulate = Color(1, 1, 0, 1)
 position = Vector2(320, 150)
 
 [node name="Brick Left" type="StaticBody2D" parent="Bricks/Mid Bottom Row"]
 position = Vector2(-220, 0)
 collision_layer = 2
-collision_mask = 3
-script = ExtResource("5_7mycd")
+collision_mask = 4
 
 [node name="sprite" type="Sprite2D" parent="Bricks/Mid Bottom Row/Brick Left"]
 texture = ExtResource("5_lquwl")
@@ -210,8 +202,7 @@ shape = SubResource("RectangleShape2D_7mycd")
 [node name="Brick Mid Left" type="StaticBody2D" parent="Bricks/Mid Bottom Row"]
 position = Vector2(-110, 0)
 collision_layer = 2
-collision_mask = 3
-script = ExtResource("5_7mycd")
+collision_mask = 4
 
 [node name="sprite" type="Sprite2D" parent="Bricks/Mid Bottom Row/Brick Mid Left"]
 texture = ExtResource("5_lquwl")
@@ -221,8 +212,7 @@ shape = SubResource("RectangleShape2D_7mycd")
 
 [node name="Brick Middle" type="StaticBody2D" parent="Bricks/Mid Bottom Row"]
 collision_layer = 2
-collision_mask = 3
-script = ExtResource("5_7mycd")
+collision_mask = 4
 
 [node name="sprite" type="Sprite2D" parent="Bricks/Mid Bottom Row/Brick Middle"]
 texture = ExtResource("5_lquwl")
@@ -233,8 +223,7 @@ shape = SubResource("RectangleShape2D_7mycd")
 [node name="Brick Mid Right" type="StaticBody2D" parent="Bricks/Mid Bottom Row"]
 position = Vector2(110, 0)
 collision_layer = 2
-collision_mask = 3
-script = ExtResource("5_7mycd")
+collision_mask = 4
 
 [node name="sprite" type="Sprite2D" parent="Bricks/Mid Bottom Row/Brick Mid Right"]
 texture = ExtResource("5_lquwl")
@@ -245,8 +234,7 @@ shape = SubResource("RectangleShape2D_7mycd")
 [node name="Brick Right" type="StaticBody2D" parent="Bricks/Mid Bottom Row"]
 position = Vector2(220, 0)
 collision_layer = 2
-collision_mask = 3
-script = ExtResource("5_7mycd")
+collision_mask = 4
 
 [node name="sprite" type="Sprite2D" parent="Bricks/Mid Bottom Row/Brick Right"]
 texture = ExtResource("5_lquwl")
@@ -255,13 +243,13 @@ texture = ExtResource("5_lquwl")
 shape = SubResource("RectangleShape2D_7mycd")
 
 [node name="Bottom Row" type="Node2D" parent="Bricks"]
+modulate = Color(1, 0.133333, 0.133333, 1)
 position = Vector2(320, 200)
 
 [node name="Brick Left" type="StaticBody2D" parent="Bricks/Bottom Row"]
 position = Vector2(-220, 0)
 collision_layer = 2
-collision_mask = 3
-script = ExtResource("5_7mycd")
+collision_mask = 4
 
 [node name="sprite" type="Sprite2D" parent="Bricks/Bottom Row/Brick Left"]
 texture = ExtResource("5_lquwl")
@@ -272,8 +260,7 @@ shape = SubResource("RectangleShape2D_7mycd")
 [node name="Brick Mid Left" type="StaticBody2D" parent="Bricks/Bottom Row"]
 position = Vector2(-110, 0)
 collision_layer = 2
-collision_mask = 3
-script = ExtResource("5_7mycd")
+collision_mask = 4
 
 [node name="sprite" type="Sprite2D" parent="Bricks/Bottom Row/Brick Mid Left"]
 texture = ExtResource("5_lquwl")
@@ -283,8 +270,7 @@ shape = SubResource("RectangleShape2D_7mycd")
 
 [node name="Brick Middle" type="StaticBody2D" parent="Bricks/Bottom Row"]
 collision_layer = 2
-collision_mask = 3
-script = ExtResource("5_7mycd")
+collision_mask = 4
 
 [node name="sprite" type="Sprite2D" parent="Bricks/Bottom Row/Brick Middle"]
 texture = ExtResource("5_lquwl")
@@ -295,8 +281,7 @@ shape = SubResource("RectangleShape2D_7mycd")
 [node name="Brick Mid Right" type="StaticBody2D" parent="Bricks/Bottom Row"]
 position = Vector2(110, 0)
 collision_layer = 2
-collision_mask = 3
-script = ExtResource("5_7mycd")
+collision_mask = 4
 
 [node name="sprite" type="Sprite2D" parent="Bricks/Bottom Row/Brick Mid Right"]
 texture = ExtResource("5_lquwl")
@@ -307,11 +292,18 @@ shape = SubResource("RectangleShape2D_7mycd")
 [node name="Brick Right" type="StaticBody2D" parent="Bricks/Bottom Row"]
 position = Vector2(220, 0)
 collision_layer = 2
-collision_mask = 3
-script = ExtResource("5_7mycd")
+collision_mask = 4
 
 [node name="sprite" type="Sprite2D" parent="Bricks/Bottom Row/Brick Right"]
 texture = ExtResource("5_lquwl")
 
 [node name="hitbox" type="CollisionShape2D" parent="Bricks/Bottom Row/Brick Right"]
 shape = SubResource("RectangleShape2D_7mycd")
+
+[node name="Bottom" type="StaticBody2D" parent="."]
+position = Vector2(0, 500)
+collision_layer = 8
+collision_mask = 4
+
+[node name="hitbox" type="CollisionShape2D" parent="Bottom"]
+shape = SubResource("SegmentShape2D_lquwl")
