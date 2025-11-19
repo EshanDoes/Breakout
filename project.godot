@@ -43,6 +43,7 @@ click={
 2d_physics/layer_2="bricks"
 2d_physics/layer_3="ball"
 2d_physics/layer_4="bottom"
+2d_physics/layer_5="paddle"
 
 [rendering]
 
