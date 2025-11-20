@@ -1,17 +1,14 @@
 extends CharacterBody2D
 
-var speed = 200
-var initialVelocity
+var speed = 150
+@onready var initialVelocity = Vector2(speed, speed)
 var launched = 0
 var bricksDestroyed = 0
-var bricksGroup
+@onready var bricksScene = preload("res://bricks.tscn")
+@onready var gameOverScene = preload("res://gameover.tscn")
 var lives = 3
 var score = 0
-
-# Set the initial velocity because the speed variable doesn't apply until the project starts
-func _ready():
-	initialVelocity = Vector2(100, speed)
-	bricksGroup = $"/root/Main/Bricks"
+var speedMultiplier = 1.0
 
 # Check if the player clicked, and launch the ball if they did, and if they didn't make the ball follow the paddle when the mouse moves
 func _input(event):
@@ -22,7 +19,7 @@ func _input(event):
 
 # Makes the ball move and bounce
 func _physics_process(delta):
-	var collider = move_and_collide(initialVelocity * delta * launched)
+	var collider = move_and_collide(initialVelocity * delta * launched * speedMultiplier)
 	
 	if collider:
 		var collidingObject = collider.get_collider()
@@ -56,9 +53,9 @@ func _physics_process(delta):
 			$"/root/Main/Points Text".text = str(score)
 			
 			if bricksDestroyed == 20:
+				collidingObject.get_parent().get_parent().queue_free()
 				print("All bricks destroyed!")
-				# Current priority is figuring out how to fix this (Why can't I just do what I usually do in Unity aaaaaaaaaaaaaa)
-				add_sibling(bricksGroup)
+				summonBricks()
 			print(bricksDestroyed)
 			
 		# Lose a life and reset the ball if it goes under the paddle
@@ -69,6 +66,10 @@ func _physics_process(delta):
 				self.position.y = 430
 				self.position.x = $"/root/Main/Paddle".position.x
 				removeLifeTexutre()
+			else:
+				add_sibling(gameOverScene.instantiate())
+				$"/root/Main/Game Over Screen/Score".text = "Score: " + str(score)
+				self.visible = false
 			screenShake(20, 250)
 			
 			print("Lives: " + str(lives))
@@ -95,3 +96,21 @@ func screenShake(shakeAmount, shakeLength):
 		await get_tree().create_timer(0.01).timeout
 	
 	camera.offset = Vector2(0, 0)
+
+# Resummon the bricks once they're all destroyed
+func summonBricks():
+	var loadBricks = bricksScene.instantiate()
+	add_sibling(loadBricks)
+	bricksDestroyed = 0
+	self.position.y = 430
+	launched = 0
+	screenShake(10, 20)
+	speedMultiplier += 0.1
+	self.position.x = $"/root/Main/Paddle".position.x
+	
+	for i in 5:
+		self.visible = true
+		await get_tree().create_timer(0.1).timeout
+		self.visible = false
+		await get_tree().create_timer(0.1).timeout
+	self.visible = true

@@ -1,0 +1,241 @@
+[gd_scene load_steps=3 format=3 uid="uid://cekgc6olc7g53"]
+
+[ext_resource type="Texture2D" uid="uid://baga1dsu4gmff" path="res://sprites/bricks.png" id="1_30gar"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cjtcm"]
+size = Vector2(100, 40)
+
+[node name="Bricks" type="Node2D"]
+position = Vector2(0, 10)
+
+[node name="top" type="Node2D" parent="."]
+modulate = Color(1, 0.133333, 0.133333, 1)
+position = Vector2(320, 50)
+
+[node name="Brick Left" type="StaticBody2D" parent="top"]
+position = Vector2(-220, 0)
+collision_layer = 2
+collision_mask = 4
+
+[node name="sprite" type="Sprite2D" parent="top/Brick Left"]
+texture = ExtResource("1_30gar")
+
+[node name="hitbox" type="CollisionShape2D" parent="top/Brick Left"]
+shape = SubResource("RectangleShape2D_cjtcm")
+
+[node name="Brick Mid Left" type="StaticBody2D" parent="top"]
+position = Vector2(-110, 0)
+collision_layer = 2
+collision_mask = 4
+
+[node name="sprite" type="Sprite2D" parent="top/Brick Mid Left"]
+texture = ExtResource("1_30gar")
+
+[node name="hitbox" type="CollisionShape2D" parent="top/Brick Mid Left"]
+shape = SubResource("RectangleShape2D_cjtcm")
+
+[node name="Brick Middle" type="StaticBody2D" parent="top"]
+collision_layer = 2
+collision_mask = 4
+
+[node name="sprite" type="Sprite2D" parent="top/Brick Middle"]
+texture = ExtResource("1_30gar")
+
+[node name="hitbox" type="CollisionShape2D" parent="top/Brick Middle"]
+shape = SubResource("RectangleShape2D_cjtcm")
+
+[node name="Brick Mid Right" type="StaticBody2D" parent="top"]
+position = Vector2(110, 0)
+collision_layer = 2
+collision_mask = 4
+
+[node name="sprite" type="Sprite2D" parent="top/Brick Mid Right"]
+texture = ExtResource("1_30gar")
+
+[node name="hitbox" type="CollisionShape2D" parent="top/Brick Mid Right"]
+shape = SubResource("RectangleShape2D_cjtcm")
+
+[node name="Brick Right" type="StaticBody2D" parent="top"]
+position = Vector2(220, 0)
+collision_layer = 2
+collision_mask = 4
+
+[node name="sprite" type="Sprite2D" parent="top/Brick Right"]
+texture = ExtResource("1_30gar")
+
+[node name="hitbox" type="CollisionShape2D" parent="top/Brick Right"]
+shape = SubResource("RectangleShape2D_cjtcm")
+
+[node name="midtop" type="Node2D" parent="."]
+modulate = Color(1, 0.666667, 0.133333, 1)
+position = Vector2(320, 100)
+
+[node name="Brick Left" type="StaticBody2D" parent="midtop"]
+position = Vector2(-220, 0)
+collision_layer = 2
+collision_mask = 4
+
+[node name="sprite" type="Sprite2D" parent="midtop/Brick Left"]
+texture = ExtResource("1_30gar")
+
+[node name="hitbox" type="CollisionShape2D" parent="midtop/Brick Left"]
+shape = SubResource("RectangleShape2D_cjtcm")
+
+[node name="Brick Mid Left" type="StaticBody2D" parent="midtop"]
+position = Vector2(-110, 0)
+collision_layer = 2
+collision_mask = 4
+
+[node name="sprite" type="Sprite2D" parent="midtop/Brick Mid Left"]
+texture = ExtResource("1_30gar")
+
+[node name="hitbox" type="CollisionShape2D" parent="midtop/Brick Mid Left"]
+shape = SubResource("RectangleShape2D_cjtcm")
+
+[node name="Brick Middle" type="StaticBody2D" parent="midtop"]
+collision_layer = 2
+collision_mask = 4
+
+[node name="sprite" type="Sprite2D" parent="midtop/Brick Middle"]
+texture = ExtResource("1_30gar")
+
+[node name="hitbox" type="CollisionShape2D" parent="midtop/Brick Middle"]
+shape = SubResource("RectangleShape2D_cjtcm")
+
+[node name="Brick Mid Right" type="StaticBody2D" parent="midtop"]
+position = Vector2(110, 0)
+collision_layer = 2
+collision_mask = 4
+
+[node name="sprite" type="Sprite2D" parent="midtop/Brick Mid Right"]
+texture = ExtResource("1_30gar")
+
+[node name="hitbox" type="CollisionShape2D" parent="midtop/Brick Mid Right"]
+shape = SubResource("RectangleShape2D_cjtcm")
+
+[node name="Brick Right" type="StaticBody2D" parent="midtop"]
+position = Vector2(220, 0)
+collision_layer = 2
+collision_mask = 4
+
+[node name="sprite" type="Sprite2D" parent="midtop/Brick Right"]
+texture = ExtResource("1_30gar")
+
+[node name="hitbox" type="CollisionShape2D" parent="midtop/Brick Right"]
+shape = SubResource("RectangleShape2D_cjtcm")
+
+[node name="midbottom" type="Node2D" parent="."]
+modulate = Color(0, 1, 0, 1)
+position = Vector2(320, 150)
+
+[node name="Brick Left" type="StaticBody2D" parent="midbottom"]
+position = Vector2(-220, 0)
+collision_layer = 2
+collision_mask = 4
+
+[node name="sprite" type="Sprite2D" parent="midbottom/Brick Left"]
+texture = ExtResource("1_30gar")
+
+[node name="hitbox" type="CollisionShape2D" parent="midbottom/Brick Left"]
+shape = SubResource("RectangleShape2D_cjtcm")
+
+[node name="Brick Mid Left" type="StaticBody2D" parent="midbottom"]
+position = Vector2(-110, 0)
+collision_layer = 2
+collision_mask = 4
+
+[node name="sprite" type="Sprite2D" parent="midbottom/Brick Mid Left"]
+texture = ExtResource("1_30gar")
+
+[node name="hitbox" type="CollisionShape2D" parent="midbottom/Brick Mid Left"]
+shape = SubResource("RectangleShape2D_cjtcm")
+
+[node name="Brick Middle" type="StaticBody2D" parent="midbottom"]
+collision_layer = 2
+collision_mask = 4
+
+[node name="sprite" type="Sprite2D" parent="midbottom/Brick Middle"]
+texture = ExtResource("1_30gar")
+
+[node name="hitbox" type="CollisionShape2D" parent="midbottom/Brick Middle"]
+shape = SubResource("RectangleShape2D_cjtcm")
+
+[node name="Brick Mid Right" type="StaticBody2D" parent="midbottom"]
+position = Vector2(110, 0)
+collision_layer = 2
+collision_mask = 4
+
+[node name="sprite" type="Sprite2D" parent="midbottom/Brick Mid Right"]
+texture = ExtResource("1_30gar")
+
+[node name="hitbox" type="CollisionShape2D" parent="midbottom/Brick Mid Right"]
+shape = SubResource("RectangleShape2D_cjtcm")
+
+[node name="Brick Right" type="StaticBody2D" parent="midbottom"]
+position = Vector2(220, 0)
+collision_layer = 2
+collision_mask = 4
+
+[node name="sprite" type="Sprite2D" parent="midbottom/Brick Right"]
+texture = ExtResource("1_30gar")
+
+[node name="hitbox" type="CollisionShape2D" parent="midbottom/Brick Right"]
+shape = SubResource("RectangleShape2D_cjtcm")
+
+[node name="bottom" type="Node2D" parent="."]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(320, 200)
+
+[node name="Brick Left" type="StaticBody2D" parent="bottom"]
+position = Vector2(-220, 0)
+collision_layer = 2
+collision_mask = 4
+
+[node name="sprite" type="Sprite2D" parent="bottom/Brick Left"]
+texture = ExtResource("1_30gar")
+
+[node name="hitbox" type="CollisionShape2D" parent="bottom/Brick Left"]
+shape = SubResource("RectangleShape2D_cjtcm")
+
+[node name="Brick Mid Left" type="StaticBody2D" parent="bottom"]
+position = Vector2(-110, 0)
+collision_layer = 2
+collision_mask = 4
+
+[node name="sprite" type="Sprite2D" parent="bottom/Brick Mid Left"]
+texture = ExtResource("1_30gar")
+
+[node name="hitbox" type="CollisionShape2D" parent="bottom/Brick Mid Left"]
+shape = SubResource("RectangleShape2D_cjtcm")
+
+[node name="Brick Middle" type="StaticBody2D" parent="bottom"]
+collision_layer = 2
+collision_mask = 4
+
+[node name="sprite" type="Sprite2D" parent="bottom/Brick Middle"]
+texture = ExtResource("1_30gar")
+
+[node name="hitbox" type="CollisionShape2D" parent="bottom/Brick Middle"]
+shape = SubResource("RectangleShape2D_cjtcm")
+
+[node name="Brick Mid Right" type="StaticBody2D" parent="bottom"]
+position = Vector2(110, 0)
+collision_layer = 2
+collision_mask = 4
+
+[node name="sprite" type="Sprite2D" parent="bottom/Brick Mid Right"]
+texture = ExtResource("1_30gar")
+
+[node name="hitbox" type="CollisionShape2D" parent="bottom/Brick Mid Right"]
+shape = SubResource("RectangleShape2D_cjtcm")
+
+[node name="Brick Right" type="StaticBody2D" parent="bottom"]
+position = Vector2(220, 0)
+collision_layer = 2
+collision_mask = 4
+
+[node name="sprite" type="Sprite2D" parent="bottom/Brick Right"]
+texture = ExtResource("1_30gar")
+
+[node name="hitbox" type="CollisionShape2D" parent="bottom/Brick Right"]
+shape = SubResource("RectangleShape2D_cjtcm")
