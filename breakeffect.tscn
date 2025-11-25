@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://c31x4g1svkbsh"]
+
+[ext_resource type="Script" uid="uid://mhwikj1x6ib5" path="res://scripts/breakeffect.gd" id="1_ufls8"]
+[ext_resource type="Texture2D" uid="uid://b2km5q2v3aqqc" path="res://sprites/brickpiece.png" id="1_x31dn"]
+
+[node name="Break Effect" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_ufls8")
+
+[node name="bottomright" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("1_x31dn")
+
+[node name="bottomleft" type="Sprite2D" parent="."]
+rotation = 1.5708
+scale = Vector2(2, 2)
+texture = ExtResource("1_x31dn")
+
+[node name="topleft" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("1_x31dn")
+
+[node name="topright" type="Sprite2D" parent="."]
+rotation = 1.5708
+scale = Vector2(2, 2)
+texture = ExtResource("1_x31dn")
+
+[node name="Camera2D" type="Camera2D" parent="."]

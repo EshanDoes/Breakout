@@ -1,23 +1,26 @@
 extends CharacterBody2D
 
-var speed = 150
+@export var speed = 150
 @onready var initialVelocity = Vector2(speed, speed)
 var launched = 0
 var bricksDestroyed = 0
 @onready var bricksScene = preload("res://bricks.tscn")
 @onready var gameOverScene = preload("res://gameover.tscn")
+@onready var brickBreakEffectScene = preload("res://breakeffect.tscn")
 var lives = 3
 var score = 0
+var highScore
 var speedMultiplier = 1.0
+@onready var paddle = $"/root/Main/Paddle"
 
 # Check if the player clicked, and launch the ball if they did, and if they didn't make the ball follow the paddle when the mouse moves
 func _input(event):
 	if event.is_action_pressed("click") and !lives == 0:
 		launched = 1
-	if launched == 0:
-		self.position.x = $"/root/Main/Paddle".position.x
+	if launched == 0 and not (paddle.position.x > 600 or paddle.position.x < 40):
+		self.position.x = paddle.position.x
 
-# Makes the ball move and bounce
+# Makes the ball move, bounce, and detect collision
 func _physics_process(delta):
 	var collider = move_and_collide(initialVelocity * delta * launched * speedMultiplier)
 	
@@ -30,6 +33,7 @@ func _physics_process(delta):
 		# Check if the ball has collided with anything that can make it bounce or a brick
 		if collidingObject.collision_layer == 1 or  collidingObject.collision_layer == 2 or collidingObject.collision_layer == 16:
 			initialVelocity = initialVelocity.bounce(collider.get_normal())
+			$bounceSFX.play()
 			print(initialVelocity)
 		
 		# Break a brick if the ball has collided with one, and add to the amount of bricks that has been broken
@@ -51,11 +55,19 @@ func _physics_process(delta):
 				score += 15
 				screenShake(9, 3)
 			$"/root/Main/Points Text".text = str(score)
+			$"breakSFX".play()
+			
+			# Add the effect for breaking the brick
+			var brickBreakFX = brickBreakEffectScene.instantiate()
+			brickBreakFX.position = collidingObject.global_position
+			brickBreakFX.modulate = collidingObject.get_parent().modulate
 			
 			if bricksDestroyed == 20:
 				collidingObject.get_parent().get_parent().queue_free()
 				print("All bricks destroyed!")
 				summonBricks()
+			else:
+				add_sibling(brickBreakFX)
 			print(bricksDestroyed)
 			
 		# Lose a life and reset the ball if it goes under the paddle
@@ -67,10 +79,10 @@ func _physics_process(delta):
 				self.position.x = $"/root/Main/Paddle".position.x
 				removeLifeTexutre()
 			else:
-				add_sibling(gameOverScene.instantiate())
-				$"/root/Main/Game Over Screen/Score".text = "Score: " + str(score)
+				gameOver()
 				self.visible = false
 			screenShake(20, 250)
+			$lifeLossSFX.play()
 			
 			print("Lives: " + str(lives))
 
@@ -114,3 +126,38 @@ func summonBricks():
 		self.visible = false
 		await get_tree().create_timer(0.1).timeout
 	self.visible = true
+
+# Save the user's high score and show the game over screen
+func gameOver():
+	var saveFile = FileAccess.open("user://savegame.save", FileAccess.READ_WRITE)
+	var gameOverScreen = gameOverScene.instantiate()
+	
+	if FileAccess.file_exists("user://savegame.save"):
+		var json_text = saveFile.get_as_text()
+		var data = JSON.parse_string(json_text)
+		print(data)
+		
+		if typeof(data) == 3:
+			highScore = int(data)
+		else:
+			print("Invalid JSON structure. Structure is " + str(typeof(data)))
+			highScore = 0
+	else:
+		print("Failed to open file.")
+		highScore = 0
+	
+	if score > highScore:
+		highScore = score
+		saveFile.store_line(JSON.stringify(highScore))
+		highScoreFlash(gameOverScreen.get_node("Score"))
+	
+	gameOverScreen.get_node("Score").text = "Score: " + str(score)
+	gameOverScreen.get_node("HighScore").text = "High Score: " + str(highScore)
+	add_sibling(gameOverScreen)
+
+func highScoreFlash(highScoreText):
+	while true:
+		highScoreText.modulate = Color(1.0, 0.7, 0.0, 1.0)
+		await get_tree().create_timer(0.5).timeout
+		highScoreText.modulate = Color(1.0, 1.0, 1.0, 1.0)
+		await get_tree().create_timer(0.5).timeout

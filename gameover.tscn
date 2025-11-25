@@ -55,13 +55,22 @@ text = "Score: 165"
 label_settings = SubResource("LabelSettings_4nh4k")
 horizontal_alignment = 1
 
+[node name="HighScore" type="Label" parent="."]
+layout_mode = 0
+offset_top = 310.0
+offset_right = 640.0
+offset_bottom = 342.0
+text = "High Score: 165"
+label_settings = SubResource("LabelSettings_4nh4k")
+horizontal_alignment = 1
+
 [node name="RestartButton" type="TextureButton" parent="."]
 layout_mode = 1
 anchors_preset = -1
 offset_left = 270.0
-offset_top = 320.0
+offset_top = 360.0
 offset_right = 370.0
-offset_bottom = 360.0
+offset_bottom = 400.0
 grow_horizontal = 2
 grow_vertical = 2
 texture_normal = ExtResource("3_kctv7")
@@ -78,7 +87,8 @@ vertical_alignment = 1
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 show_behind_parent = true
-scale = Vector2(640, 480)
+position = Vector2(0, -20)
+scale = Vector2(640, 500)
 color = Color(0, 0, 0, 0.501961)
 polygon = PackedVector2Array(0, 0, 0, 1, 1, 1, 1, 0)
 
