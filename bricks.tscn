@@ -6,6 +6,7 @@
 size = Vector2(100, 40)
 
 [node name="Bricks" type="Node2D"]
+texture_filter = 1
 position = Vector2(0, 10)
 
 [node name="top" type="Node2D" parent="."]
@@ -21,6 +22,7 @@ collision_mask = 4
 texture = ExtResource("1_30gar")
 
 [node name="hitbox" type="CollisionShape2D" parent="top/Brick Left"]
+visible = false
 shape = SubResource("RectangleShape2D_cjtcm")
 
 [node name="Brick Mid Left" type="StaticBody2D" parent="top"]
@@ -32,6 +34,7 @@ collision_mask = 4
 texture = ExtResource("1_30gar")
 
 [node name="hitbox" type="CollisionShape2D" parent="top/Brick Mid Left"]
+visible = false
 shape = SubResource("RectangleShape2D_cjtcm")
 
 [node name="Brick Middle" type="StaticBody2D" parent="top"]
@@ -42,6 +45,7 @@ collision_mask = 4
 texture = ExtResource("1_30gar")
 
 [node name="hitbox" type="CollisionShape2D" parent="top/Brick Middle"]
+visible = false
 shape = SubResource("RectangleShape2D_cjtcm")
 
 [node name="Brick Mid Right" type="StaticBody2D" parent="top"]
@@ -53,6 +57,7 @@ collision_mask = 4
 texture = ExtResource("1_30gar")
 
 [node name="hitbox" type="CollisionShape2D" parent="top/Brick Mid Right"]
+visible = false
 shape = SubResource("RectangleShape2D_cjtcm")
 
 [node name="Brick Right" type="StaticBody2D" parent="top"]
@@ -64,6 +69,7 @@ collision_mask = 4
 texture = ExtResource("1_30gar")
 
 [node name="hitbox" type="CollisionShape2D" parent="top/Brick Right"]
+visible = false
 shape = SubResource("RectangleShape2D_cjtcm")
 
 [node name="midtop" type="Node2D" parent="."]
@@ -79,6 +85,7 @@ collision_mask = 4
 texture = ExtResource("1_30gar")
 
 [node name="hitbox" type="CollisionShape2D" parent="midtop/Brick Left"]
+visible = false
 shape = SubResource("RectangleShape2D_cjtcm")
 
 [node name="Brick Mid Left" type="StaticBody2D" parent="midtop"]
@@ -90,6 +97,7 @@ collision_mask = 4
 texture = ExtResource("1_30gar")
 
 [node name="hitbox" type="CollisionShape2D" parent="midtop/Brick Mid Left"]
+visible = false
 shape = SubResource("RectangleShape2D_cjtcm")
 
 [node name="Brick Middle" type="StaticBody2D" parent="midtop"]
@@ -100,6 +108,7 @@ collision_mask = 4
 texture = ExtResource("1_30gar")
 
 [node name="hitbox" type="CollisionShape2D" parent="midtop/Brick Middle"]
+visible = false
 shape = SubResource("RectangleShape2D_cjtcm")
 
 [node name="Brick Mid Right" type="StaticBody2D" parent="midtop"]
@@ -111,6 +120,7 @@ collision_mask = 4
 texture = ExtResource("1_30gar")
 
 [node name="hitbox" type="CollisionShape2D" parent="midtop/Brick Mid Right"]
+visible = false
 shape = SubResource("RectangleShape2D_cjtcm")
 
 [node name="Brick Right" type="StaticBody2D" parent="midtop"]
@@ -122,6 +132,7 @@ collision_mask = 4
 texture = ExtResource("1_30gar")
 
 [node name="hitbox" type="CollisionShape2D" parent="midtop/Brick Right"]
+visible = false
 shape = SubResource("RectangleShape2D_cjtcm")
 
 [node name="midbottom" type="Node2D" parent="."]
@@ -137,6 +148,7 @@ collision_mask = 4
 texture = ExtResource("1_30gar")
 
 [node name="hitbox" type="CollisionShape2D" parent="midbottom/Brick Left"]
+visible = false
 shape = SubResource("RectangleShape2D_cjtcm")
 
 [node name="Brick Mid Left" type="StaticBody2D" parent="midbottom"]
@@ -148,6 +160,7 @@ collision_mask = 4
 texture = ExtResource("1_30gar")
 
 [node name="hitbox" type="CollisionShape2D" parent="midbottom/Brick Mid Left"]
+visible = false
 shape = SubResource("RectangleShape2D_cjtcm")
 
 [node name="Brick Middle" type="StaticBody2D" parent="midbottom"]
@@ -158,6 +171,7 @@ collision_mask = 4
 texture = ExtResource("1_30gar")
 
 [node name="hitbox" type="CollisionShape2D" parent="midbottom/Brick Middle"]
+visible = false
 shape = SubResource("RectangleShape2D_cjtcm")
 
 [node name="Brick Mid Right" type="StaticBody2D" parent="midbottom"]
@@ -169,6 +183,7 @@ collision_mask = 4
 texture = ExtResource("1_30gar")
 
 [node name="hitbox" type="CollisionShape2D" parent="midbottom/Brick Mid Right"]
+visible = false
 shape = SubResource("RectangleShape2D_cjtcm")
 
 [node name="Brick Right" type="StaticBody2D" parent="midbottom"]
@@ -180,6 +195,7 @@ collision_mask = 4
 texture = ExtResource("1_30gar")
 
 [node name="hitbox" type="CollisionShape2D" parent="midbottom/Brick Right"]
+visible = false
 shape = SubResource("RectangleShape2D_cjtcm")
 
 [node name="bottom" type="Node2D" parent="."]
@@ -195,6 +211,7 @@ collision_mask = 4
 texture = ExtResource("1_30gar")
 
 [node name="hitbox" type="CollisionShape2D" parent="bottom/Brick Left"]
+visible = false
 shape = SubResource("RectangleShape2D_cjtcm")
 
 [node name="Brick Mid Left" type="StaticBody2D" parent="bottom"]
@@ -206,6 +223,7 @@ collision_mask = 4
 texture = ExtResource("1_30gar")
 
 [node name="hitbox" type="CollisionShape2D" parent="bottom/Brick Mid Left"]
+visible = false
 shape = SubResource("RectangleShape2D_cjtcm")
 
 [node name="Brick Middle" type="StaticBody2D" parent="bottom"]
@@ -216,6 +234,7 @@ collision_mask = 4
 texture = ExtResource("1_30gar")
 
 [node name="hitbox" type="CollisionShape2D" parent="bottom/Brick Middle"]
+visible = false
 shape = SubResource("RectangleShape2D_cjtcm")
 
 [node name="Brick Mid Right" type="StaticBody2D" parent="bottom"]
@@ -227,6 +246,7 @@ collision_mask = 4
 texture = ExtResource("1_30gar")
 
 [node name="hitbox" type="CollisionShape2D" parent="bottom/Brick Mid Right"]
+visible = false
 shape = SubResource("RectangleShape2D_cjtcm")
 
 [node name="Brick Right" type="StaticBody2D" parent="bottom"]
@@ -238,4 +258,5 @@ collision_mask = 4
 texture = ExtResource("1_30gar")
 
 [node name="hitbox" type="CollisionShape2D" parent="bottom/Brick Right"]
+visible = false
 shape = SubResource("RectangleShape2D_cjtcm")

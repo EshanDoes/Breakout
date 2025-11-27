@@ -24,5 +24,3 @@ texture = ExtResource("1_x31dn")
 rotation = 1.5708
 scale = Vector2(2, 2)
 texture = ExtResource("1_x31dn")
-
-[node name="Camera2D" type="Camera2D" parent="."]

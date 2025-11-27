@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dr28cpmwuxoix"]
+[gd_scene load_steps=16 format=3 uid="uid://dr28cpmwuxoix"]
 
 [ext_resource type="Script" uid="uid://c80hc3rrfvo3q" path="res://scripts/paddle.gd" id="1_h2yge"]
 [ext_resource type="Texture2D" uid="uid://csndtdk4pfxod" path="res://sprites/paddle.png" id="1_ig7tw"]
@@ -8,7 +8,6 @@
 [ext_resource type="AudioStream" uid="uid://by6amq66usbqa" path="res://sounds/break.wav" id="6_4c57u"]
 [ext_resource type="Texture2D" uid="uid://bisljkylvmk4f" path="res://sprites/miniball.png" id="6_7mycd"]
 [ext_resource type="AudioStream" uid="uid://b3o5numfus0ov" path="res://sounds/bounce.wav" id="7_4c57u"]
-[ext_resource type="Texture2D" uid="uid://c81fsoje162ur" path="res://sprites/miniballoutline.png" id="7_272bh"]
 [ext_resource type="FontFile" uid="uid://wcr0h84uoix5" path="res://DigitalDisco.ttf" id="8_5vw27"]
 [ext_resource type="AudioStream" uid="uid://cacbs8yq3x83o" path="res://sounds/hitHurt.wav" id="8_efxa6"]
 
@@ -109,7 +108,7 @@ texture = ExtResource("6_7mycd")
 [node name="life3" type="Sprite2D" parent="LivesCounter"]
 position = Vector2(70, 20)
 scale = Vector2(2, 2)
-texture = ExtResource("7_272bh")
+texture = ExtResource("6_7mycd")
 
 [node name="Points Text" type="Label" parent="."]
 offset_left = 479.0

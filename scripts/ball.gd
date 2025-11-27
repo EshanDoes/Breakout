@@ -10,7 +10,6 @@ var bricksDestroyed = 0
 var lives = 3
 var score = 0
 var highScore
-var speedMultiplier = 1.0
 @onready var paddle = $"/root/Main/Paddle"
 
 # Check if the player clicked, and launch the ball if they did, and if they didn't make the ball follow the paddle when the mouse moves
@@ -22,7 +21,7 @@ func _input(event):
 
 # Makes the ball move, bounce, and detect collision
 func _physics_process(delta):
-	var collider = move_and_collide(initialVelocity * delta * launched * speedMultiplier)
+	var collider = move_and_collide(initialVelocity * delta * launched)
 	
 	if collider:
 		var collidingObject = collider.get_collider()
@@ -32,9 +31,12 @@ func _physics_process(delta):
 		
 		# Check if the ball has collided with anything that can make it bounce or a brick
 		if collidingObject.collision_layer == 1 or  collidingObject.collision_layer == 2 or collidingObject.collision_layer == 16:
-			initialVelocity = initialVelocity.bounce(collider.get_normal())
+			var bounce = collider.get_normal()
+			initialVelocity = initialVelocity.bounce(bounce)
+			if abs(initialVelocity.x)>abs(initialVelocity.y)*07 or abs(initialVelocity.y)>abs(initialVelocity.x)*07:
+				initialVelocity = Vector2(speed*sign(initialVelocity.x), speed*sign(initialVelocity.y))
 			$bounceSFX.play()
-			print(initialVelocity)
+			print(bounce)
 		
 		# Break a brick if the ball has collided with one, and add to the amount of bricks that has been broken
 		if collidingObject.collision_layer == 2:
@@ -65,7 +67,7 @@ func _physics_process(delta):
 			if bricksDestroyed == 20:
 				collidingObject.get_parent().get_parent().queue_free()
 				print("All bricks destroyed!")
-				summonBricks()
+				allBricksBroken()
 			else:
 				add_sibling(brickBreakFX)
 			print(bricksDestroyed)
@@ -74,10 +76,11 @@ func _physics_process(delta):
 		if collidingObject.collision_layer == 8:
 			lives -= 1
 			launched = 0
+			removeLifeTexutre()
 			if lives > 0:
 				self.position.y = 430
 				self.position.x = $"/root/Main/Paddle".position.x
-				removeLifeTexutre()
+				initialVelocity = Vector2(speed, speed)
 			else:
 				gameOver()
 				self.visible = false
@@ -88,13 +91,13 @@ func _physics_process(delta):
 
 # Sparkled effect for updating the sprite when you lose a life
 func removeLifeTexutre():
-	var lifeTexture = get_node("/root/Main/LivesCounter/life" + str(lives))
+	var lifeTexture = get_node("/root/Main/LivesCounter/life" + str(lives+1))
 	
 	for i in 3:
 		lifeTexture.texture = load("res://sprites/miniball.png")
-		await get_tree().create_timer(0.1).timeout
+		await get_tree().create_timer(0.2).timeout
 		lifeTexture.texture = load("res://sprites/miniballoutline.png")
-		await get_tree().create_timer(0.1).timeout
+		await get_tree().create_timer(0.2).timeout
 
 # Really juicy screen shake effect, so much sparkle in there
 func screenShake(shakeAmount, shakeLength):
@@ -102,25 +105,29 @@ func screenShake(shakeAmount, shakeLength):
 	var random = RandomNumberGenerator.new()
 	
 	for i in shakeLength:
-		camera.offset.x = round(random.randf_range(shakeAmount*-1, shakeAmount)/i*5)/5
-		camera.offset.y = round(random.randf_range(shakeAmount*-1, shakeAmount)/i*5)/5
+		camera.offset.x = round(random.randf_range(shakeAmount*-1, shakeAmount)/i*5)/4
+		camera.offset.y = round(random.randf_range(shakeAmount*-1, shakeAmount)/i*5)/4
 		
 		await get_tree().create_timer(0.01).timeout
 	
 	camera.offset = Vector2(0, 0)
 
-# Resummon the bricks once they're all destroyed
-func summonBricks():
+# Resummon the bricks once they're all destroyed, bring the ball back to the paddle, make it faster each time, and have a larger screen shake
+func allBricksBroken():
 	var loadBricks = bricksScene.instantiate()
 	add_sibling(loadBricks)
 	bricksDestroyed = 0
-	self.position.y = 430
+	
 	launched = 0
-	screenShake(10, 20)
-	speedMultiplier += 0.1
+	self.position.y = 430
 	self.position.x = $"/root/Main/Paddle".position.x
 	
-	for i in 5:
+	speed = speed * 1.1
+	initialVelocity = Vector2(speed, speed)
+	screenShake(10, 20)
+	
+	# Make the ball flash after the bricks respawn
+	for i in 3:
 		self.visible = true
 		await get_tree().create_timer(0.1).timeout
 		self.visible = false
@@ -132,6 +139,7 @@ func gameOver():
 	var saveFile = FileAccess.open("user://savegame.save", FileAccess.READ_WRITE)
 	var gameOverScreen = gameOverScene.instantiate()
 	
+	# Find the high score in the save files
 	if FileAccess.file_exists("user://savegame.save"):
 		var json_text = saveFile.get_as_text()
 		var data = JSON.parse_string(json_text)
@@ -146,18 +154,21 @@ func gameOver():
 		print("Failed to open file.")
 		highScore = 0
 	
+	# Update the high score if the score is bigger than the high score
 	if score > highScore:
 		highScore = score
 		saveFile.store_line(JSON.stringify(highScore))
 		highScoreFlash(gameOverScreen.get_node("Score"))
 	
+	
 	gameOverScreen.get_node("Score").text = "Score: " + str(score)
 	gameOverScreen.get_node("HighScore").text = "High Score: " + str(highScore)
 	add_sibling(gameOverScreen)
 
+# Add a small flashing effect for the score when you get a high score
 func highScoreFlash(highScoreText):
 	while true:
 		highScoreText.modulate = Color(1.0, 0.7, 0.0, 1.0)
-		await get_tree().create_timer(0.5).timeout
+		await get_tree().create_timer(0.3).timeout
 		highScoreText.modulate = Color(1.0, 1.0, 1.0, 1.0)
-		await get_tree().create_timer(0.5).timeout
+		await get_tree().create_timer(0.3).timeout
